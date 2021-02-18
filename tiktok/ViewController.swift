@@ -57,19 +57,14 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         cell.playerLayer!.frame = CGRect(x:0,y:0,width:screenSize.width,height: screenSize.height)
         cell.playerLayer!.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cell.playerView.layer.addSublayer(cell.playerLayer!)
-        cell.playBtn.addTarget(self, action: #selector(self.connected(_:)), for:.touchUpInside)
         cell.playBtn.tag = indexPath.item
+        cell.playBtn.addTarget(self, action: #selector(self.connected(_:)), for:.touchUpInside)
+        cell.playBtn.isUserInteractionEnabled = true
+        cell.playBtn.isEnabled = true
         cell.playerView.layer.backgroundColor = UIColor.black.cgColor
         
+        cell.playBtn.setImage(UIImage(systemName:"pause.fill"), for: .normal)
         
-        if self.toggleState == 1{
-            print("pause")
-            cell.playBtn.setBackgroundImage(UIImage(named:"ic_play_icon"), for: .normal)
-            cell.player?.play()
-           // playing.play_id = 1
-            self.toggleState = 2
-            //cell.playBtn.isHidden = false
-        }
         return cell
     }
     
@@ -81,11 +76,18 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         let indexPath = IndexPath(row: buttonTag, section: 0)
         let cell = CollectionView.cellForItem(at: indexPath) as! VideoCollectionViewCells
         //if(cell.playBtn.backgroundImage(for: .normal) == UIImage(named: "ic_play_icon")){
-    
-        if toggleState == 2{
-           print("play")
-            cell.playBtn.setBackgroundImage(UIImage(named:"play.fill"), for: .normal)
+        if self.toggleState == 1{
+            print("pause")
+            cell.playBtn.setImage(UIImage(systemName:"pause.fill"), for: .normal)
             cell.player?.pause()
+           // playing.play_id = 1
+            self.toggleState = 2
+            //cell.playBtn.isHidden = false
+        }
+        else if toggleState == 2{
+           print("play")
+            cell.playBtn.setImage(UIImage(systemName:"play.fill"), for: .normal)
+            cell.player?.play()
             //playing.play_id = 0
             self.toggleState = 1
             //cell.playBtn.isHidden = true
