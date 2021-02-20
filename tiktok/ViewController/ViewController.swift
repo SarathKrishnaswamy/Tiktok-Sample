@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.ForYouBtn.layer.cornerRadius = 5.0
+        
+        //CollectionView Flowlayout
         let layout = UICollectionViewFlowLayout()
         CollectionView.showsVerticalScrollIndicator = false
         layout.scrollDirection = .vertical
@@ -28,9 +30,9 @@ class ViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top:0, left: 0, bottom: 0, right: 0)
         self.CollectionView.contentInset = UIEdgeInsets(top:-44, left: 0, bottom:-34, right: 0)
-        
         self.CollectionView.collectionViewLayout = layout
         
+        //Added the url into the array
         Append_array()
         
         
@@ -43,13 +45,13 @@ class ViewController: UIViewController {
        let url2 = GetURL(url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
         urlsData.append(url1)
         urlsData.append(url2)
-        
         print(urlsData)
         
     }
 
 }
 
+//Collectionview has declared
 extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return urlsData.count
@@ -71,14 +73,12 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         cell.playBtn.isUserInteractionEnabled = true
         cell.playBtn.isEnabled = true
         cell.playerView.layer.backgroundColor = UIColor.black.cgColor
-        
         cell.playBtn.setImage(UIImage(systemName:"pause.fill"), for: .normal)
         
         return cell
     }
     
     @objc func connected(_ sender : UIButton) {
-        
         
         let buttonTag = sender.tag
         
