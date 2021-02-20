@@ -13,16 +13,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet weak var ForYouBtn: UIButton!
     
-    var urls = ["http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4","http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"]
-    
+    var urlsData:[GetURL] = []
+   
     var index:Int! = 0
     var toggleState = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         self.ForYouBtn.layer.cornerRadius = 5.0
-        
         let layout = UICollectionViewFlowLayout()
         CollectionView.showsVerticalScrollIndicator = false
         layout.scrollDirection = .vertical
@@ -33,25 +31,36 @@ class ViewController: UIViewController {
         
         self.CollectionView.collectionViewLayout = layout
         
+        Append_array()
+        
+        
         
     }
 
+    
+    func Append_array(){
+       let url1 = GetURL(url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
+       let url2 = GetURL(url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+        urlsData.append(url1)
+        urlsData.append(url2)
+        
+        print(urlsData)
+        
+    }
 
 }
 
 extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return urls.count
+        return urlsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCells", for: indexPath) as! VideoCollectionViewCells
         let screenSize: CGRect = UIScreen.main.bounds
-        let datas = urls[indexPath.row]
-        let url = URL.init(string: datas)
+        let datas = urlsData[indexPath.row].urls
+        let url = URL.init(string: datas!)
         cell.playerItem = AVPlayerItem(url: url!)
-        //cell.player!.replaceCurrentItem(with: cell.playerItem)
-       // cell.image.isHidden = true
         cell.player = AVPlayer(playerItem: cell.playerItem!)
         cell.playerLayer = AVPlayerLayer(player: cell.player!)
         cell.playerLayer!.frame = CGRect(x:0,y:0,width:screenSize.width,height: screenSize.height)
@@ -75,22 +84,19 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
         
         let indexPath = IndexPath(row: buttonTag, section: 0)
         let cell = CollectionView.cellForItem(at: indexPath) as! VideoCollectionViewCells
-        //if(cell.playBtn.backgroundImage(for: .normal) == UIImage(named: "ic_play_icon")){
+        
         if self.toggleState == 1{
             print("pause")
             cell.playBtn.setImage(UIImage(systemName:"pause.fill"), for: .normal)
             cell.player?.pause()
-           // playing.play_id = 1
             self.toggleState = 2
-            //cell.playBtn.isHidden = false
+            
         }
         else if toggleState == 2{
            print("play")
             cell.playBtn.setImage(UIImage(systemName:"play.fill"), for: .normal)
             cell.player?.play()
-            //playing.play_id = 0
             self.toggleState = 1
-            //cell.playBtn.isHidden = true
         }
             
     
@@ -111,8 +117,6 @@ extension ViewController:UICollectionViewDelegate,UICollectionViewDataSource,UIC
             index = indexPath.row
             comedyCell.player?.play()
             comedyCell.image.isHidden = true
-        
-           // comedyCell.player!.addObserver(self, forKeyPath:"timeControlStatus", options: [.old, .new], context: nil)
         }
     }
     

@@ -18,6 +18,7 @@
 		9E6C97CE25DE5AFC0034D874 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E6C97CC25DE5A830034D874 /* Montserrat-MediumItalic.ttf */; };
 		9E6C97CF25DE5AFC0034D874 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E6C97CD25DE5A840034D874 /* Montserrat-Regular.ttf */; };
 		9E6C97D525DE65360034D874 /* VideoCollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6C97D425DE65360034D874 /* VideoCollectionViewCells.swift */; };
+		9E94E69A25E12FFC003CB3E3 /* GetURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E94E69925E12FFC003CB3E3 /* GetURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		9E6C97CC25DE5A830034D874 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		9E6C97CD25DE5A840034D874 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		9E6C97D425DE65360034D874 /* VideoCollectionViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCells.swift; sourceTree = "<group>"; };
+		9E94E69925E12FFC003CB3E3 /* GetURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,10 +108,11 @@
 		9E6C979725DE577F0034D874 /* tiktok */ = {
 			isa = PBXGroup;
 			children = (
+				9E94E69825E12FD3003CB3E3 /* URLArray */,
+				9E94E69725E12FA4003CB3E3 /* ViewController */,
 				9E6C97D325DE65150034D874 /* Cells */,
 				9E6C979825DE577F0034D874 /* AppDelegate.swift */,
 				9E6C979A25DE577F0034D874 /* SceneDelegate.swift */,
-				9E6C979C25DE577F0034D874 /* ViewController.swift */,
 				9E6C979E25DE577F0034D874 /* Main.storyboard */,
 				9E6C97A125DE57830034D874 /* Assets.xcassets */,
 				9E6C97A325DE57830034D874 /* LaunchScreen.storyboard */,
@@ -151,6 +154,22 @@
 				9E6C97D425DE65360034D874 /* VideoCollectionViewCells.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		9E94E69725E12FA4003CB3E3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E6C979C25DE577F0034D874 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9E94E69825E12FD3003CB3E3 /* URLArray */ = {
+			isa = PBXGroup;
+			children = (
+				9E94E69925E12FFC003CB3E3 /* GetURL.swift */,
+			);
+			path = URLArray;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E94E69A25E12FFC003CB3E3 /* GetURL.swift in Sources */,
 				9E6C979D25DE577F0034D874 /* ViewController.swift in Sources */,
 				9E6C979925DE577F0034D874 /* AppDelegate.swift in Sources */,
 				9E6C97D525DE65360034D874 /* VideoCollectionViewCells.swift in Sources */,
